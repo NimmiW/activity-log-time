@@ -5,9 +5,9 @@ var number_of_opened_tabs = 0;
 var tabList = [];
 
 
-chrome.runtime.onMessage.addListener(function(response,sender,sendResponse){
+/*chrome.runtime.onMessage.addListener(function(response,sender,sendResponse){
     alert(response);
-});
+});*/
 
 chrome.browserAction.onClicked.addListener(function(){
     chrome.tabs.create({url:chrome.extension.getURL('hello.html')});
@@ -55,9 +55,20 @@ chrome.tabs.onActivated.addListener(function (tab){
             tabList[index].activetime = tabList[index].activetime + difference;
             tabList[index].isActive = true;
             console.log('a tab came active : ' + tabList[index].id);
-            console.log(tabList[index].activetime);
+            console.log('tab ' + tabList[index].id +' had been in that page for '+ tabList[index].activetime + 'ms');
         }
         
     }
     
 })
+
+/*chrome.storage.sync.set({'nic': 'lovely girl'}, function() {
+    // Notify that we saved.
+    console.log('data saved');
+
+    chrome.storage.sync.get('nic', function(val) {
+        // Notify that we saved.
+        console.log('data retrieved' + val);
+        console.log(val);
+    });
+});*/
